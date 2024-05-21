@@ -1,13 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Уроки
-        </h2>
+        <h1 class="text-3xl font-bold mb-6 text-center">Уроки </h1>
+        <a href="{{route('add-lesson')}}" class="bg-blue-500 text-white px-4 py-2 mb-10 rounded-lg hover:bg-blue-700">Создать</a>
     </x-slot>
 
     <div class="container mx-auto">
-        <h1 class="text-3xl font-bold mb-6 text-center">Уроки </h1>
-        <button class="bg-blue-500 text-white px-4 py-2 mb-10 rounded-lg hover:bg-blue-700">Создать</button>
+        <br>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- Product Card Start -->
 
@@ -21,11 +19,12 @@
                         <span class="text-lg font-bold text-gray-800">Даурен Тайыров</span>
                     </div>
                     <div class="flex justify-start gap-2 items-center">
-                        <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700">Редактировать</button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700">Удалить</button>
+                        <a href="#" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700">Редактировать</a>
+                        <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700">Удалить</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </x-app-layout>
