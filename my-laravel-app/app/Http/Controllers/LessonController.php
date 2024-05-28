@@ -10,7 +10,9 @@ class LessonController extends Controller
     {
         return view ('lessons.add-lesson');
     }
-
+public function test() {
+    return view('test');
+}
     public function store(Request $request)
     {
         $request->validate([

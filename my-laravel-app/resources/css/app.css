@@ -50,11 +50,26 @@ body {
     color: white;
 }
 .seat-reserved {
-    @apply bg-cyan-400;
+    @apply bg-emerald-400
+
 }
 
 .seat-available {
-    @apply bg-emerald-400
+    @apply bg-cyan-400;
 }
 
+.bg-small {
+    background-image: url('/image/CRM_banner_small.png');
+}
 
+@media (min-width: 640px) {
+    .bg-medium {
+        background-image: url('/image/CRM_banner_medium.png');
+    }
+}
+
+@media (min-width: 1024px) {
+    .bg-large {
+        background-image: url('/image/CRM_banner_large.png');
+    }
+}
