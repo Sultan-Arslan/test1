@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class LessonController extends Controller
 {
@@ -21,5 +22,9 @@ public function test() {
             'date' => 'required|date',
             'lector' => 'required|string|max:255',
         ]);
+    }
+    public function changeLocale($locale){
+        App::setLocale($locale);
+        return redirect()->back();
     }
 }

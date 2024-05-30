@@ -93,9 +93,9 @@
                         <!-- Выпадающий список -->
                         <div x-show="open" @click.away="open = false" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" x-cloak>
                             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500" role="menuitem">Казахский</a>
-                                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500" role="menuitem">English</a>
-                                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500" role="menuitem">Русский</a>
+                                <a href="{{route('locale','kz')}}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500" role="menuitem">Казахский</a>
+                                <a href="{{route('locale','en')}}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500" role="menuitem">English</a>
+                                <a href="{{route('locale','ru')}}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500" role="menuitem">Русский</a>
                             </div>
                         </div>
                     </div>
@@ -533,6 +533,11 @@
                     </svg>
                 </div>
             </div>
+            <form action="" method="POST">
+                @csrf
+                <input type="hidden" name="lesson_id" value="">
+                <button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Записаться на урок</button>
+            </form>
         </div>
         <!-- Card 1 -->
         <div class="bg-white rounded-lg shadow-md p-6">

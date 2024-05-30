@@ -30,6 +30,10 @@ Route::get('/dashboard', function () {
 Route::get('add-lesson' ,[LessonController::class, 'create'])->name('add-lesson');
 Route::post('store-lesson' ,[LessonController::class, 'store'])->name('store-lesson');
 
+Route::get('locale/{locale}',[LessonController::class,'changeLocale'])->name('locale');
+
+
+
 
 
 Route::middleware('auth')->group(function () {
