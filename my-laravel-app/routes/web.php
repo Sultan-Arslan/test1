@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,7 @@ Route::get('/dashboard', function () {
 Route::get('add-lesson' ,[LessonController::class, 'create'])->name('add-lesson');
 Route::post('store-lesson' ,[LessonController::class, 'store'])->name('store-lesson');
 
-Route::get('locale/{locale}',[LessonController::class,'changeLocale'])->name('locale');
-
+Route::get('switch-language/{lang}', [LanguageController::class, 'switchLanguage'])->name('switch.language');
 
 
 

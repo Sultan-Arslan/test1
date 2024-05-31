@@ -23,8 +23,5 @@ public function test() {
             'lector' => 'required|string|max:255',
         ]);
     }
-    public function changeLocale($locale){
-        App::setLocale($locale);
-        return redirect()->back();
-    }
+
 }
