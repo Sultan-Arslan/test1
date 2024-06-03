@@ -5,6 +5,9 @@
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    <x-slot name="header">
+        {{__('main.password_recovery')}}
+    </x-slot>
 
     <form method="POST" action="{{ route('password.email') }}">
         @csrf

@@ -19,4 +19,9 @@ return [
     'Email Password Reset Link'=>'Cбросить пароль',
     'logout'=>'Выход',
     'profile'=>'Профиль',
+    'lessons'=>'Уроки',
+    'my_lessons'=>'Мои уроки',
+    'password_recovery'=>'Востановление пароля',
+    'dashboard'=>'Админ панель',
+    'reset_password'=>'Сброс пароля'
 ];

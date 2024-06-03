@@ -19,7 +19,12 @@
             <!-- Меню и иконка гамбургера -->
             <div class="flex items-center">
                 <div class="hidden md:flex space-x-4">
-                    <a href="#" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.home')</a>
+                    <a href="{{route('home')}}" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.home')</a>
+                    @if (Route::has('login'))
+                        @auth()
+                    <a href="#" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.my_lessons')</a>
+                    @endif
+                    @endauth
                     <a href="#" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.about')</a>
                     <a href="#" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.services')</a>
                     <a href="#" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.contacts')</a>
@@ -76,6 +81,9 @@
                                     <div class="px-2 py-2  space-y-1 sm:px-3 border-t rounded-lg border-gray-200">
                                         @auth
                                             <a href="{{ url('/profile') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.profile')}}</a>
+                                            @if(auth()->user()->hasAllRoles(['admin']))
+                                            <a href="{{ url('/dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.dashboard')}}</a>
+                                            @endif
                                             <form method="POST" action="{{ route('logout') }}" class="block">
                                                 @csrf
                                                 <a href="{{ route('logout') }}"
@@ -140,19 +148,20 @@
                             @if (Route::has('login'))
                                 <div class="px-2 py-2  space-y-1 sm:px-3 border-t rounded-lg border-gray-200">
                                     @auth
-                                        <a href="{{ url('/dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">Dashboard</a>
+                                        <a href="{{ url('/profile') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.profile')}}</a>
+                                        <a href="{{ url('/dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.dashboard')}}</a>
                                         <form method="POST" action="{{ route('logout') }}" class="block">
                                             @csrf
                                             <a href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                          this.closest('form').submit();" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">
-                                                Logout
+                                                {{__('main.logout')}}
                                             </a>
                                         </form>
                                     @else
-                                        <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">Вход</a>
+                                        <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.login')}}</a>
                                         @if (Route::has('register'))
-                                            <a href="{{ route('register') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">Регистрация</a>
+                                            <a href="{{ route('register') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.register')}}</a>
                                         @endif
                                     @endauth
                                 </div>

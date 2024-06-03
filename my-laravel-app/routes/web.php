@@ -20,7 +20,10 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/' ,[LessonController::class, 'test'])->name('test');
+Route::get('/', function () {
+    return redirect(url('/home'));
+});
+Route::get('/home' ,[LessonController::class, 'test'])->name('home');
 
 
 Route::get('/dashboard', function () {

@@ -1,30 +1,36 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h1 class="text-3xl font-bold mb-6 text-center">Уроки </h1>
-        <a href="{{route('add-lesson')}}" class="bg-blue-500 text-white px-4 py-2 mb-10 rounded-lg hover:bg-blue-700">Создать</a>
-    </x-slot>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl fw-bold text-center text-white bg-gradient-to-r from-blue-500 to-purple-500 mb-4 py-4 px-8 rounded-lg shadow-lg">
+        {{ __('main.lessons') }}
+    </h1>
 
     <div class="container mx-auto">
-        <br>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Product Card Start -->
-
-            <div class="bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="https://www.usports.ru/sites/usp/files/collections/0/742/istock_517098364_1080.jpg" alt="Product Image" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold mb-2"> Title </h2>
-                    <p class="text-gray-600 mb-4">This is a short description of the lesson.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-lg font-bold text-gray-800">20.05.2024 г.</span>
-                        <span class="text-lg font-bold text-gray-800">Даурен Тайыров</span>
-                    </div>
-                    <div class="flex justify-start gap-2 items-center">
-                        <a href="#" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700">Редактировать</a>
-                        <a href="#" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700">Удалить</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h1 class="text-2xl font-bold mb-4">Уроки</h1>
+        <a href="" class="bg-blue-500 text-white px-4 py-2 rounded">Создать урок</a>
+        <table class="min-w-full bg-white mt-4">
+            <thead>
+            <tr>
+                <th class="py-2 px-4 border-b">ID</th>
+                <th class="py-2 px-4 border-b">Название</th>
+                <th class="py-2 px-4 border-b">Описание</th>
+                <th class="py-2 px-4 border-b">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="py-2 px-4 border-b"></td>
+                    <td class="py-2 px-4 border-b"></td>
+                    <td class="py-2 px-4 border-b"></td>
+                    <td class="py-2 px-4 border-b">
+                        <a href="" class="bg-yellow-500 text-white px-4 py-2 rounded">Редактировать</a>
+                        <form action="" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </x-app-layout>

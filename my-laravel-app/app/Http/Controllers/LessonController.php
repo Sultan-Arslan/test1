@@ -12,7 +12,7 @@ class LessonController extends Controller
         return view ('lessons.add-lesson');
     }
 public function test() {
-    return view('test');
+    return view('home');
 }
     public function store(Request $request)
     {

@@ -17,6 +17,10 @@
             }));
         });
     </script>
+
+    <x-slot name="header">
+        {{__('main.register')}}
+    </x-slot>
     <form method="POST" action="{{ route('register') }} " x-data="phoneInputMask()">
         @csrf
 

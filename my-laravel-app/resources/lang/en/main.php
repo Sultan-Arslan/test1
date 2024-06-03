@@ -18,4 +18,8 @@ return [
     'Email Password Reset Link'=>'Reset Password',
     'logout'=>'Logout',
     'profile'=>'Profile',
+    'lessons'=>'lessons',
+    'password_recovery'=>'Password recovery',
+    'dashboard'=>'dashboard',
+    'reset_password'=>'Reset password'
 ];
