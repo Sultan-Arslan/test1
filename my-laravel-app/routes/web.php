@@ -26,6 +26,10 @@ Route::get('/', function () {
 Route::get('/home' ,[LessonController::class, 'test'])->name('home');
 
 
+Route::get('/adminpanel', [LessonController::class, 'index'])->name('dashboard');
+
+Route::post('lessons/{lesson}/register', [LessonController::class, 'register'])->name('lessons.register');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

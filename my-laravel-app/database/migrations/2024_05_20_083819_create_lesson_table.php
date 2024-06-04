@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('text');
+            $table->text('description')->nullable();;
             $table->date('date'); // lesson date
-            $table->string('lector'); // lesson lector
-            $table->integer('user_count')->default(0);
+            $table->foreignId('specialist_id')->constrained('users'); // lesson lector
+            $table->integer('capacity')->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('lessons');
     }
 };

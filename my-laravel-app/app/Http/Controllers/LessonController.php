@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -11,9 +12,17 @@ class LessonController extends Controller
     {
         return view ('lessons.add-lesson');
     }
-public function test() {
-    return view('home');
-}
+    public function test() {
+        return view('home');
+    }
+
+    public function index()
+    {
+        $lessons = Lesson::with('specialist')->get();
+        return view('dashboard', compact('lessons'));
+        $lessons = Lesson::all();
+        return $lessons;
+    }
     public function store(Request $request)
     {
         $request->validate([
