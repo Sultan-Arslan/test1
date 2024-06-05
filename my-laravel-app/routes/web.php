@@ -25,8 +25,12 @@ Route::get('/', function () {
 });
 Route::get('/home' ,[LessonController::class, 'test'])->name('home');
 
-
-Route::get('/adminpanel', [LessonController::class, 'index'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+Route::get('/admin-panel', [LessonController::class, 'index'])->name('dashboard-index');
+Route::post('/admin-panel', [LessonController::class, 'index'])->name('dashboard-create');
+Route::patch('/admin-panel', [LessonController::class, 'index'])->name('dashboard-update');
+Route::delete('/admin-panel', [LessonController::class, 'index'])->name('dashboard-delete');
+});
 
 Route::post('lessons/{lesson}/register', [LessonController::class, 'register'])->name('lessons.register');
 

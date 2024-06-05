@@ -16,6 +16,19 @@
     <!-- Подключение Inputmask -->
     <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
     <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+
         .bg-small {
             background-image: url('{{ asset('image/CRM_banner_small.png') }}');
         }
