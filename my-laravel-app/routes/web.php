@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\CheckAdminRole;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserRoleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,26 +27,27 @@ Route::get('/welcome', function () {
 Route::get('/', function () {
     return redirect(url('/home'));
 });
-Route::get('/home' ,[LessonController::class, 'test'])->name('home');
-
-Route::middleware(['auth', 'verified'])->group(function () {
-Route::get('/admin-panel', [LessonController::class, 'index'])->name('dashboard-index');
-Route::post('/admin-panel', [LessonController::class, 'index'])->name('dashboard-create');
-Route::patch('/admin-panel', [LessonController::class, 'index'])->name('dashboard-update');
-Route::delete('/admin-panel', [LessonController::class, 'index'])->name('dashboard-delete');
-});
-
-Route::post('lessons/{lesson}/register', [LessonController::class, 'register'])->name('lessons.register');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
-Route::get('add-lesson' ,[LessonController::class, 'create'])->name('add-lesson');
-Route::post('store-lesson' ,[LessonController::class, 'store'])->name('store-lesson');
+Route::get('/home' ,[HomeController::class, 'index'])->name('home');
 
 Route::get('switch-language/{lang}', [LanguageController::class, 'switchLanguage'])->name('switch.language');
+Route::middleware(['auth', 'verified'])->group(function () {
+    //Запись на урок пользователя
+    Route::post('lessons/{lesson}/register', [HomeController::class, 'register'])->name('lessons.register');
+
+    Route::group(['middleware'=>CheckAdminRole::class], function (){
+//Админ панель и уроки
+    Route::get('lessons', [LessonController::class, 'index'])->name('lessons.index');
+    Route::get('lessons/create', [LessonController::class, 'create'])->name('lessons.create');
+    Route::post('lessons', [LessonController::class, 'store'])->name('lessons.store');
+    Route::get('lessons/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
+    Route::get('lessons/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit');
+    Route::put('lessons/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
+    Route::delete('lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+//специалист
+    Route::get('user_roles', [UserRoleController::class, 'index'])->name('user_roles.index');
+    Route::put('user_roles/{user}', [UserRoleController::class, 'update'])->name('user_roles.update');
+    });
+});
 
 
 

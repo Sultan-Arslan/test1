@@ -23,5 +23,15 @@ return [
     'my_lessons'=>'Мои уроки',
     'password_recovery'=>'Востановление пароля',
     'dashboard'=>'Админ панель',
-    'reset_password'=>'Сброс пароля'
+    'reset_password'=>'Сброс пароля',
+    'back'=>'Назад',
+    'update'=>'Обновить',
+    'capacity'=>'Места',
+    'Specialist'=>'Специалист',
+    'date'=>'Дата проведение',
+    'Description'=>'Описание урока' ,
+    'Title'=>'Название урока',
+    'Edit Lesson'=>'Редактор урока',
+    'create'=>'Создать',
+    'Create Lesson'=>'Создание урока'
 ];

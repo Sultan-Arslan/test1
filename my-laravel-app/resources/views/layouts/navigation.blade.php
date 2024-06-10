@@ -22,7 +22,9 @@
                     <a href="{{route('home')}}" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.home')</a>
                     @if (Route::has('login'))
                         @auth()
-                    <a href="#" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.my_lessons')</a>
+                            @if(!(auth()->user()->hasAllRoles(['admin'])))
+                                 <a href="#" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.my_lessons')</a>
+                            @endif
                     @endif
                     @endauth
                     <a href="#" class="text-gray-900 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium">@lang('main.about')</a>
@@ -80,9 +82,11 @@
                                 @if (Route::has('login'))
                                     <div class="px-2 py-2  space-y-1 sm:px-3 border-t rounded-lg border-gray-200">
                                         @auth
+
+                                            <a href="{{ url('/profile') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{auth()->user()->name}}</a>
                                             <a href="{{ url('/profile') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.profile')}}</a>
                                             @if(auth()->user()->hasAllRoles(['admin']))
-                                            <a href="{{ url('/dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.dashboard')}}</a>
+                                            <a href="{{ url('/lessons') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.dashboard')}}</a>
                                             @endif
                                             <form method="POST" action="{{ route('logout') }}" class="block">
                                                 @csrf
@@ -110,6 +114,13 @@
         <div :class="{'block': open, 'hidden': !open}" class="md:hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Главная</a>
+                @if (Route::has('login'))
+                    @auth()
+                        @if(!(auth()->user()->hasAllRoles(['admin'])))
+                            <a href="#" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">@lang('main.my_lessons')</a>
+                        @endif
+                    @endif
+                @endauth
                 <a href="#" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">О нас</a>
                 <a href="#" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Услуги</a>
                 <a href="#" class="text-gray-900 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium">Контакты</a>
@@ -148,8 +159,11 @@
                             @if (Route::has('login'))
                                 <div class="px-2 py-2  space-y-1 sm:px-3 border-t rounded-lg border-gray-200">
                                     @auth
+                                        <a href="{{ url('/profile') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{auth()->user()->name}}</a>
                                         <a href="{{ url('/profile') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.profile')}}</a>
-                                        <a href="{{ url('/dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.dashboard')}}</a>
+                                        @if((auth()->user()->hasAllRoles(['admin'])))
+                                            <a href="{{ url('/dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500">{{__('main.dashboard')}}</a>
+                                        @endif
                                         <form method="POST" action="{{ route('logout') }}" class="block">
                                             @csrf
                                             <a href="{{ route('logout') }}"

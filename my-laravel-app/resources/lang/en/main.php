@@ -21,5 +21,15 @@ return [
     'lessons'=>'lessons',
     'password_recovery'=>'Password recovery',
     'dashboard'=>'dashboard',
-    'reset_password'=>'Reset password'
+    'reset_password'=>'Reset password',
+    'back'=>'Back',
+    'update'=>'Update',
+    'capacity'=>'Capacity',
+    'Specialist'=>'Specialist',
+    'date'=>'Date',
+    'Description'=>'Description',
+    'Title'=>'Title',
+    'Edit Lesson'=>'Edit Lesson',
+    'create'=>'create',
+    'Create Lesson'=>'Create Lesson'
 ];

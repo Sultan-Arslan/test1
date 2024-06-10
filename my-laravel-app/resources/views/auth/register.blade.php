@@ -11,7 +11,7 @@
             Alpine.data('phoneInputMask', () => ({
                 init() {
                     // Создание и применение маски ввода
-                    const phoneMask = new Inputmask('999-999-9999');
+                    const phoneMask = new Inputmask('+7-999-999-9999');
                     phoneMask.mask(this.$refs.phone);
                 }
             }));
@@ -42,7 +42,7 @@
         <div class="mt-4">
             <x-input-label for="phone" :value="__('main.phone_number')" />
             <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required
-                          autocomplete="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" x-ref="phone" />
+                          autocomplete="phone" placeholder="+7-123-456-7890" pattern="[+]{1}[7]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}" x-ref="phone" />
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
