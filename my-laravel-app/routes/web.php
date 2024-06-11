@@ -28,11 +28,14 @@ Route::get('/', function () {
     return redirect(url('/home'));
 });
 Route::get('/home' ,[HomeController::class, 'index'])->name('home');
+Route::get('/lessons/search', [HomeController::class, 'search'])->name('lessons.search');
 
 Route::get('switch-language/{lang}', [LanguageController::class, 'switchLanguage'])->name('switch.language');
 Route::middleware(['auth', 'verified'])->group(function () {
     //Запись на урок пользователя
-    Route::post('lessons/{lesson}/register', [HomeController::class, 'register'])->name('lessons.register');
+    Route::post('lessons/{lessonId}/register', [HomeController::class, 'register'])->name('lessons.register');
+    Route::post('lessons/{lesson}/unregister', [HomeController::class, 'unregister'])->name('lessons.unregister');
+
 
     Route::group(['middleware'=>CheckAdminRole::class], function (){
 //Админ панель и уроки
