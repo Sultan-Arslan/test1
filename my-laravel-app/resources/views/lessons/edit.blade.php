@@ -1,3 +1,7 @@
+@php
+    $specialists = \App\Models\User::role('specialist')->get();
+@endphp
+
 @extends('layouts.app')
 
 @section('title', 'Edit Lesson')
@@ -27,6 +31,7 @@
                         <option value="{{ $specialist->id }}">{{ $specialist->name }}</option>
                     @endforeach
                 </select>
+
             </div>
             <div class="mb-4">
                 <label for="capacity" class="block text-gray-700">{{__('main.capacity')}}</label>

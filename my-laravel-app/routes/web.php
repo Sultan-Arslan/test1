@@ -34,8 +34,6 @@ Route::get('switch-language/{lang}', [LanguageController::class, 'switchLanguage
 Route::middleware(['auth', 'verified'])->group(function () {
     //Запись на урок пользователя
     Route::post('lessons/{lessonId}/register', [HomeController::class, 'register'])->name('lessons.register');
-    Route::post('lessons/{lesson}/unregister', [HomeController::class, 'unregister'])->name('lessons.unregister');
-
 
     Route::group(['middleware'=>CheckAdminRole::class], function (){
 //Админ панель и уроки
@@ -46,9 +44,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('lessons/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit');
     Route::put('lessons/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
     Route::delete('lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+
+ //запись на уроки для администратора
+    Route::post('lessons/{lesson}/register-admin', [LessonController::class, 'registerAdmin'])->name('lessons.registerAdmin');
+    Route::post('lessons/{lesson}/unregister/{user?}', [LessonController::class, 'unregister'])->name('lessons.unregister');
 //специалист
     Route::get('user_roles', [UserRoleController::class, 'index'])->name('user_roles.index');
     Route::put('user_roles/{user}', [UserRoleController::class, 'update'])->name('user_roles.update');
+    Route::delete('/user_roles/{user}/photo', [UserRoleController::class, 'deletePhoto'])->name('user_roles.deletePhoto');
     });
 });
 
