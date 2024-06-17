@@ -18,6 +18,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+
     protected $fillable = [
         'name',
         'email',
@@ -48,5 +50,32 @@ class User extends Authenticatable
     public function lessons()
     {
         return $this->belongsToMany(Lesson::class, 'lesson_users');
+    }
+
+    // Другие свойства и методы модели
+
+    /**
+     * Мутатор для установки номера телефона в нужном формате.
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setPhoneAttribute($value)
+    {
+        // Удаляем все нецифровые символы
+        $this->attributes['phone'] = preg_replace('/\D/', '', $value);
+    }
+
+    /**
+     * Аксессор для получения номера телефона в формате +7-702-640-40-95.
+     *
+     * @return string
+     */
+    public function getPhoneAttribute()
+    {
+        $phone = $this->attributes['phone'];
+
+        // Преобразуем номер телефона в формат +7-702-640-40-95
+        return '+7-' . substr($phone, 1, 3) . '-' . substr($phone, 4, 3) . '-' . substr($phone, 7, 2) . '-' . substr($phone, 9, 2);
     }
 }

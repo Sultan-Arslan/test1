@@ -24,7 +24,9 @@
         </div>
         <div class="mt-4">
             <x-input-label for="phone" :value="__('Phone Number')" />
-            <x-text-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone' , $user->phone)" required   autocomplete="phone" />
+{{--            <x-text-input id="phone" class="block mt-1 w-full" type="tel" name="phone" :value="old('phone' , $user->phone)" required   autocomplete="phone" />--}}
+            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone', $user->phone)" required
+                          autocomplete="phone" pattern="[+]{1}[7]{1}-[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" x-ref="phone" />
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 

@@ -177,7 +177,7 @@ class HomeController extends Controller
                 'filter' => [
                     'PHONE' => '%' . $user->phone . '%' // Используем номер телефона для проверки
                 ],
-                'select' => ['ID', 'NAME', 'LAST_NAME', 'PHONE']
+                'select' => ['ID', 'NAME', 'PHONE']
             ]
         ]);
 
@@ -195,7 +195,6 @@ class HomeController extends Controller
             'json' => [
                 'fields' => [
                     'NAME' => $user->name,
-                    'LAST_NAME' => $user->last_name,
                     'EMAIL' => [
                         [
                             'VALUE' => $user->email,

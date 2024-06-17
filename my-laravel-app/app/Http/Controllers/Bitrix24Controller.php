@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
@@ -15,7 +16,13 @@ class Bitrix24Controller extends Controller
 
     public function findOrCreateContact(Request $request)
     {
-        $phoneNumber = $request->input('phone'); // Получаем номер телефона из запроса
+        $request->validate([
+            user_id
+            ]);
+        $user_id = $request->user_id;
+        $user = User::findOrFail($user_id);
+        $phoneNumber = $user->getOriginal('phone');// Получаем номер телефона из запроса
+
         $client = new Client();
 
         // Поиск контакта по номеру телефона
