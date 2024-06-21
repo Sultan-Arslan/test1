@@ -14,12 +14,11 @@
     </div>
 
     <h1 class="text-4xl md:text-5xl lg:text-6xl fw-bold text-center text-white bg-gradient-to-r from-blue-500 to-purple-500 mb-6 py-4 px-8 rounded-lg shadow-lg">Обучающая практика CRM</h1>
-
     <!-- Форма поиска и фильтрации -->
     <form action="{{ route('home') }}" method="GET" class="mb-4">
         <div class="flex flex-wrap gap-4">
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Поиск уроков..." class="border p-2 rounded">
-            <input type="date" name="start_date" value="{{ request('start_date') }}" placeholder="Дата начала" class="border p-2 rounded">
+            <input type="date"  name="start_date" value="{{ request('start_date') }}" placeholder="Дата начала" class="border p-2 rounded">
             <input type="date" name="end_date" value="{{ request('end_date') }}" placeholder="Дата окончания" class="border p-2 rounded">
             <input type="text" name="specialist" value="{{ request('specialist') }}" placeholder="Специалист" class="border p-2 rounded">
             <label class="flex items-center">
@@ -48,7 +47,10 @@
             <h3 class="text-xl font-semibold mb-4">{{ $lesson->title }}</h3>
             <div class="text-gray-600 mb-4">Дата проведение: {{ $lesson->date }}</div>
             <div class="flex items-center mb-4 ">
+                @if($lesson->specialist->photo)
                 <img src="{{ asset('storage/' . $lesson->specialist->photo) }}" alt="Lecturer" class="w-16 h-15 rounded-full mr-4 ">
+                @else <img src="{{ asset('/image/avatar.png') }}" alt="Lecturer" class="w-16 h-15 rounded-full mr-4 ">
+                @endif
                 <div>
                     <h4>Специалист:</h4>
                     <p class="text-sky-700 hover:text-sky-400">{{ $lesson->specialist->name }}</p>

@@ -1,22 +1,4 @@
 <x-guest-layout>
-    <!-- Подключение Alpine.js с отложенной загрузкой -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
-    <!-- Подключение Inputmask -->
-    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
-
-
-    <!-- Инициализация компонента Alpine.js и маски ввода -->
-    <script>
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('phoneInputMask', () => ({
-                init() {
-                    // Создание и применение маски ввода
-                    const phoneMask = new Inputmask('+7-999-999-99-99');
-                    phoneMask.mask(this.$refs.phone);
-                }
-            }));
-        });
-    </script>
 
     <x-slot name="header">
         {{__('main.register')}}
@@ -42,7 +24,7 @@
         <div class="mt-4">
             <x-input-label for="phone" :value="__('main.phone_number')" />
             <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required
-                          autocomplete="phone" placeholder="+7-123-456-7890" pattern="[+]{1}[7]{1}-[0-9]{3}-[0-9]{2}-[0-9]{2}" x-ref="phone" />
+                          autocomplete="phone" placeholder="+7-123-456-78-90" pattern="[+]{1}[7]{1}-[0-9]{3}-[0-9]{2}-[0-9]{2}" x-ref="phone" />
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 

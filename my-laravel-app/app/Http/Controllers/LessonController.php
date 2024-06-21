@@ -159,4 +159,24 @@ class LessonController extends Controller
 
         return redirect()->route('lessons.index')->with('success', 'Lesson deleted successfully.');
     }
+
+    public function deletedLessonUser($id , Request $request)
+    {
+
+        $request->validate([
+            'APIKEY' =>'required|string'
+        ]);
+        $API_KEY = $request->APIKEY;
+//        dd($API_KEY);
+        if ($API_KEY != 'EcrlWmPH39h2') {
+            return response()->json(['message'=>"You API invailed"], 404);
+        }
+        $lessonUser = LessonUser::find($id);
+        if(!isset($lessonUser->id)){
+            return response()->json(['message'=>"lessonUser with id=$id not found."], 404);
+        }
+        $lessonUser->delete();
+        return response(status:204);//ответ без тела только статус 204
+
+    }
 }

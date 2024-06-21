@@ -115,7 +115,7 @@ class HomeController extends Controller
         // Проверяем, есть ли еще свободные места на уроке
         if ($lesson->students->count() < $lesson->capacity) {
             // Привязываем пользователя к уроку
-            DB::table('lesson_users')->insert([
+           $lesson_users_id = DB::table('lesson_users')->insertGetId([
                 'lesson_id' => $lesson->id,
                 'user_id' => $user->id,
                 'created_at' => now(),
@@ -123,7 +123,7 @@ class HomeController extends Controller
             ]);
 
             // Вызов входящего веб-хука для Bitrix24
-            $this->callBitrix24Webhook($user, $lesson);
+            $this->callBitrix24Webhook($user, $lesson , $lesson_users_id);
 
             return redirect()->back()->with('success', 'Вы успешно зарегистрировались на урок.');
         } else {
@@ -131,7 +131,7 @@ class HomeController extends Controller
         }
     }
 
-    private function callBitrix24Webhook($user, $lesson)
+    private function callBitrix24Webhook($user, $lesson , $lesson_users_id)
     {
         $client = new Client();
 
@@ -146,11 +146,11 @@ class HomeController extends Controller
                 'json' => [
                     'entityTypeId' => '1032', // ID вашего смарт-процесса
                     'fields' => [
-                        'TITLE' => 'Регистрация на урок', // Название элемента смарт-процесса
+                        'TITLE' => 'Регистрация на '.$lesson->title.' по дате '.$lesson->date, // Название элемента смарт-процесса
                         'ufCrm9_1718181620' => $user->id, // Код поля для ID пользователя
                         'ufCrm9_1718181703' => $lesson->id, // Код поля для ID урока
                         'ufCrm9_1718190432' => $lesson->date, // Дата урока
-                        'ufCrm9_1718181728' => 'your-api-key', // Пример API ключа
+                        'ufCrm9_1718971118' => $lesson_users_id, // id связи урока-пользователя
                         'CONTACT_ID' => $contactId // ID контакта
                     ]
                 ]
@@ -175,7 +175,7 @@ class HomeController extends Controller
         $response = $client->post($webhookUrl, [
             'json' => [
                 'filter' => [
-                    'PHONE' => '%' . $user->phone . '%' // Используем номер телефона для проверки
+                    'PHONE' => '%'.$user->getOriginal('phone').'%' // Используем номер телефона для проверки
                 ],
                 'select' => ['ID', 'NAME', 'PHONE']
             ]

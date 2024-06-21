@@ -13,8 +13,7 @@
     {{--    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.0" defer></script>--}}
     <!-- Подключение Alpine.js с отложенной загрузкой -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js" defer></script>
-    <!-- Подключение Inputmask -->
-    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
+
 </head>
 <style>
     .bg-small {
